@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalyst Marketing Sales Process Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAFA;
+  --card-bg: #FFFFFF;
+  --text: #1A1A1A;
+  --text-muted: #5C5C5C;
+  --yellow: #F2C94C;
+  --yellow-light: #FFF8E1;
+  --yellow-dark: #D4A017;
+  --red: #D32F2F;
+  --red-light: #FFEBEE;
+  --red-bg: #C62828;
+  --green: #2E7D32;
+  --green-light: #E8F5E9;
+  --green-bg: #43A047;
+  --blue: #1565C0;
+  --blue-light: #E3F2FD;
+  --border: #E0E0E0;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+  --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* HEADER */
+.header {
+  background: var(--text);
+  color: white;
+  padding: 24px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.header p {
+  font-size: 13px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* NAV */
+.nav {
+  background: white;
+  border-bottom: 2px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 72px;
+  z-index: 99;
+}
+.nav-btn {
+  padding: 14px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--yellow);
+}
+
+/* MAIN */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.section { display: none; }
+.section.active { display: block; }
+
+/* PHASE CARD */
+.phase-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.phase-card:hover { box-shadow: var(--shadow-hover); }
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.phase-header:hover { background: #FAFAFA; }
+
+.phase-number {
+  background: var(--yellow);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 13px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phase-title {
+  font-weight: 700;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.phase-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.phase-chevron {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.phase-card.open .phase-chevron { transform: rotate(180deg); }
+
+.phase-body {
+  display: none;
+  padding: 0 24px 24px 76px;
+}
+.phase-card.open .phase-body { display: block; }
+
+/* GOAL & TONALITY TAGS */
+.tag-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.tag-goal { background: var(--blue-light); color: var(--blue); }
+.tag-tone { background: var(--green-light); color: var(--green); }
+.tag-warn { background: var(--red-light); color: var(--red); }
+
+/* SCRIPT LINE */
+.script-line {
+  background: #F7F7F7;
+  border-left: 3px solid var(--yellow);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* COACHING NOTE */
+.note {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 8px 0;
+  padding-left: 4px;
+}
+
+/* BRANCH / FLOWCHART */
+.branch-container {
+  margin: 20px 0;
+}
+.branch-question {
+  background: var(--yellow);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 4px;
+}
+.branch-line {
+  width: 2px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 auto;
+}
+.branch-options {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+.branch-option {
+  flex: 1;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.branch-option:hover {
+  border-color: var(--yellow);
+  box-shadow: var(--shadow-hover);
+}
+.branch-option.active { border-color: var(--yellow); }
+.branch-option-header {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+}
+.branch-option-header.path-a { background: var(--red); color: white; }
+.branch-option-header.path-b { background: var(--green-bg); color: white; }
+.branch-option-header.path-c { background: var(--blue); color: white; }
+.branch-option-header.path-neutral { background: #616161; color: white; }
+.branch-option-body {
+  display: none;
+  padding: 16px;
+  font-size: 14px;
+  background: white;
+}
+.branch-option.active .branch-option-body { display: block; }
+
+/* OBJECTION CARD */
+.objection-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.objection-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.objection-header:hover { background: #FAFAFA; }
+.objection-badge {
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.objection-title {
+  font-weight: 700;
+  font-size: 16px;
+  flex-grow: 1;
+}
+.objection-chevron {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+.objection-card.open .objection-chevron { transform: rotate(180deg); }
+.objection-body {
+  display: none;
+  padding: 0 24px 24px 24px;
+}
+.objection-card.open .objection-body { display: block; }
+
+/* UNIVERSAL OPENER BOX */
+.universal-opener {
+  background: var(--yellow-light);
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.universal-opener h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--yellow-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* PRESENTATION PART */
+.pres-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.pres-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+.pres-header:hover { background: #FAFAFA; }
+.pres-icon {
+  background: var(--green-bg);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pres-title { font-weight: 700; font-size: 16px; flex-grow: 1; }
+.pres-chevron {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+.pres-card.open .pres-chevron { transform: rotate(180deg); }
+.pres-body {
+  display: none;
+  padding: 0 24px 24px 76px;
+}
+.pres-card.open .pres-body { display: block; }
+
+/* FAQ */
+.faq-card {
+  background: var(--blue-light);
+  border: 1px solid #90CAF9;
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.faq-header {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.faq-header:hover { background: #BBDEFB33; }
+.faq-body {
+  display: none;
+  padding: 0 16px 12px 16px;
+  font-size: 14px;
+  color: var(--text);
+}
+.faq-card.open .faq-body { display: block; }
+
+/* SECTION HEADER */
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* KILL ANALOGY BOX */
+.kill-box {
+  background: linear-gradient(135deg, #1A1A1A, #333);
+  color: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  margin: 20px 0;
+}
+.kill-box h4 {
+  color: var(--yellow);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.kill-box .script-line {
+  background: rgba(255,255,255,0.08);
+  border-left-color: var(--yellow);
+  color: #EEE;
+}
+.kill-box .note { color: #999; }
+
+/* PLACEHOLDER */
+.placeholder-card {
+  background: var(--yellow-light);
+  border: 2px dashed var(--yellow);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.placeholder-card h3 { color: var(--yellow-dark); margin-bottom: 8px; }
+.placeholder-card p { color: var(--text-muted); font-size: 14px; }
+
+/* SEPARATOR */
+.sep { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .branch-options { flex-direction: column; }
+  .nav { overflow-x: auto; }
+  .nav-btn { white-space: nowrap; padding: 14px 16px; font-size: 13px; }
+  .phase-body { padding: 0 16px 20px 16px; }
+  .header { padding: 20px 16px; }
+  .main { padding: 20px 12px 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Catalyst Marketing Sales Process Guide</h1>
+  <p>Credit Repair Client Acquisition</p>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="showSection('sales-process', this)">1. Sales Process</button>
+  <button class="nav-btn" onclick="showSection('presentation', this)">2. Presentation</button>
+  <button class="nav-btn" onclick="showSection('pricing', this)">3. Price Presentation</button>
+  <button class="nav-btn" onclick="showSection('objections', this)">4. Objection Handling</button>
+</div>
+
+<div class="main">
+
+<!-- ==================== SECTION 1: SALES PROCESS ==================== -->
+<div id="sales-process" class="section active">
+  <div class="section-title">Section 1: Sales Process</div>
+
+  <!-- PHASE 1 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">1</div>
+      <div>
+        <div class="phase-title">Call Frame & Authority</div>
+        <div class="phase-subtitle">Set the tone, establish control, position as a peer</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Casual, warm, unhurried</span>
+      </div>
+      <div class="script-line">"Hey [Name], what's going on, how's the day been so far?"</div>
+      <div class="note">Let them respond. Match their energy for 1-2 exchanges, keep it brief.</div>
+      <div class="script-line">"Nice, nice. Well hey, I appreciate you jumping on. So the way I like to run these, I'm just gonna ask you some questions about your business, what's going on right now, what's working, what's not. My goal is just to understand your situation. If it makes sense for both of us, I'll walk you through how we help, and if not, no stress at all. Sound fair?"</div>
+      <div class="note">Wait for "yeah." This is your first micro-commitment.</div>
+      <div class="script-line">"Cool. So a little bit about me real quick just so you know who you're talking to. I run a credit repair business that's doing about 70k a month in net cash. Been in the credit and funding space for about 3 years. I built out my own operation, sales team, systems, all of it, and now we're helping other credit repair owners replicate what we've done. So the same principles and tactics we used to build ours is exactly what we'd be implementing for you and your business."</div>
+      <div class="note">Tonality shift: matter-of-fact, not bragging. This is a credential drop, not a flex.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">2</div>
+      <div>
+        <div class="phase-title">Discovery</div>
+        <div class="phase-subtitle">Get a full snapshot of where they are right now</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Genuinely curious, like a doctor asking about symptoms</span>
+      </div>
+      <div class="script-line">"So tell me, how long have you been running your credit repair business?"</div>
+      <div class="note">Let them answer fully. Don't rush.</div>
+      <div class="script-line">"Got it. And how many active clients are you working with right now?"</div>
+      <div class="script-line">"And what's revenue looking like on a monthly basis? Ballpark is fine."</div>
+      <div class="script-line">"Okay cool. And how are you currently getting new clients, like what's your main source of leads right now?"</div>
+      <div class="script-line">"And are you running this thing by yourself, or do you have a partner or anyone else involved in the business? Like when it comes to decisions for the business, is that all you?"</div>
+      <div class="note">This is critical. It sets up the Spouse/Business Partner pre-handle AND the end-of-call objection handle. Whatever they say here, you'll reference later if they try to bring in an outside decision-maker.</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">What does the prospect say?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">Referrals / Word of Mouth</div>
+            <div class="branch-option-body">
+              <div class="script-line">"So mostly organic stuff, no real system bringing people to you consistently?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-b">Running Ads</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Got it, running ads yourself or you've got somebody managing that for you?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-c">Tried Agencies/Programs</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Interesting, we'll come back to that in a sec because I want to hear what happened there."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">3</div>
+      <div>
+        <div class="phase-title">What's Not Working / Past Attempts</div>
+        <div class="phase-subtitle">Expose the gap and surface failed attempts</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Empathetic but direct</span>
+      </div>
+      <div class="script-line">"So let me ask you this, how many sales calls or consultations did you book last month?"</div>
+      <div class="script-line">"And of those, how many actually showed up?"</div>
+      <div class="script-line">"Out of the ones that showed, how many became paying clients?"</div>
+      <div class="script-line">"So what does your pipeline look like right now, are you happy with the volume of qualified people you're talking to week to week?"</div>
+      <div class="note">They'll almost always say no. If they hedge:</div>
+      <div class="script-line">"When you say it's 'okay', what does that actually look like day to day? Like are you waking up knowing you've got calls booked, or is it more like some weeks are good and some weeks it's dead?"</div>
+      <div class="sep"></div>
+      <div class="script-line">"How long has inconsistent lead flow been an issue for you?"</div>
+      <div class="script-line">"And what have you tried to fix it so far?"</div>
+      <div class="note">For each thing they mention, probe:</div>
+      <div class="script-line">"What happened with that?"</div>
+      <div class="script-line">"How long did you give that before you moved on?"</div>
+      <div class="script-line">"What specifically didn't work about it?"</div>
+      <div class="note">This is the Pain Cycle: What did you try → How long → Did it work → What else. Loop until they've exhausted their list.</div>
+      <div class="script-line">"So you've tried [repeat back what they said], and none of it really moved the needle the way you needed. Is that fair to say?"</div>
+      <div class="note">Wait for confirmation. They're now consciously aware of how many things have failed.</div>
+      <div class="script-line">"Can I ask you something? After trying all of that, what do you think was actually the problem, like why do you think none of it worked?"</div>
+      <div class="note">This gets them to self-diagnose, which sets up your pitch to fill the gap later.</div>
+
+      <div class="sep"></div>
+
+      <!-- PAST ATTEMPTS & PRE-HANDLE BRANCHING -->
+      <div class="branch-container">
+        <div class="branch-question">What has stopped you / slowed you down from fixing your lead flow and getting more clients consistently?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options" style="flex-wrap: wrap;">
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-a">I Invested / Tried X (Bad Results)</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Yeah. So here's what I see happen a lot, and tell me if this resonates. A credit repair owner knows they need more clients, so they go hire a marketing agency or buy some course or join a program. And the agency runs some ads, maybe they get some leads, but the leads are trash, or nobody's following up properly, or the whole thing falls apart after 60 days because nobody built it around YOUR business. So now you're out a few thousand bucks and you're right back where you started, except now you're more skeptical. Sound familiar?"</div>
+              <div class="note">Wait for confirmation.</div>
+              <div class="script-line">"Here's the thing though, and I'm sharing this because it matters, when we have a bad experience, it tends to cloud our judgment going forward. And we end up missing out on good opportunities because of that one bad experience. Would you agree with that?"</div>
+              <div class="note">Wait for yes.</div>
+              <div class="script-line">"So I don't want that to be the case here. What I'd rather do is just show you what we actually do, how it works, and let you decide based on THIS, not based on what some other company did or didn't do. Fair?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-b">Nothing / Haven't Tried</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Got it. So what slowed you down?"</div>
+              <div class="note">Listen. Usually time, money, didn't know where to start, overwhelmed.</div>
+              <div class="script-line">"So you haven't taken action on this for [however long they've had the problem]. Can I share a perspective on that?"</div>
+              <div class="note">Wait for yes.</div>
+              <div class="script-line">"Can you see how that pattern of not taking action, like not prioritizing getting a real client acquisition system in place, has put you in the exact position you're in right now? Like the inconsistent revenue, the stress of not knowing where next month's clients are coming from, that's a direct result of this not being addressed."</div>
+              <div class="script-line">"Because looking back over the last [timeframe], what have you missed out on in terms of growth because this wasn't handled?"</div>
+              <div class="note">Let them quantify the cost of their own inaction.</div>
+              <div class="script-line">"So how committed are you to actually becoming the business owner who invests in themselves to get to where they want to go?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-a">Other Options / Another Company</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Quick question, have you already spoken with anyone else about getting more clients for your credit repair business, or are we the first conversation?"</div>
+              <p style="margin: 8px 0; font-weight: 600;">If they have:</p>
+              <div class="script-line">"Got it. When you talked to them, what did you hear that made you still open to having this conversation?"</div>
+              <p style="margin: 8px 0; font-weight: 600;">If they haven't:</p>
+              <div class="script-line">"Okay, I only ask because most credit repair owners who start looking into this end up talking to 3-4 different companies and they all hear the same buzzwords: 'We'll run your ads.' 'We'll get you leads.' 'We'll build your funnel.' But none of them actually show you the strategy behind the client acquisition or how to engineer the outcome, they just want your monthly retainer."</div>
+              <div class="script-line">"And I'll be honest [Name], good luck finding another company that's going to actually build you a full system, get you results, and match you with the right strategy for YOUR business, without just prioritizing their own commission."</div>
+              <div class="note">Deliver with a light laugh. Confident, not arrogant.</div>
+              <div class="script-line">"So instead of shopping around for who sounds better, I'd rather help you get clear on what actually works. That way, even if you did talk to someone else later, you'll have the right criteria to tell who's real and who's full of it. Fair?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-neutral">Time</div>
+            <div class="branch-option-body">
+              <div class="script-line">"When you say time has slowed you down, was it that you literally didn't have the hours, or that other priorities seemed more urgent at the moment?"</div>
+              <div class="note">Let them answer. Almost always it's prioritization, not actual time.</div>
+              <div class="script-line">"Can you see how that way of thinking, like not prioritizing building a real client acquisition system, has put you in the exact position you described earlier? Where you're [reference their pain point]?"</div>
+              <div class="script-line">"Because looking back over the last [timeframe], what has it cost you in terms of lost clients, delayed growth, projects that never got off the ground, all because this wasn't addressed sooner?"</div>
+              <div class="script-line">"How committed are you to becoming the business owner who prioritizes getting this handled, even if it means taking action when it's uncomfortable?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-a">Money</div>
+            <div class="branch-option-body">
+              <div class="script-line">"So when you say money has slowed you down, was it that you didn't have the capital, or that you weren't confident in the return you'd get from investing?"</div>
+              <div class="note">Listen. This separates true financial constraint from uncertainty disguised as a money objection.</div>
+              <div class="script-line">"Can you see how that way of thinking around money, like holding back on investing in a real system to grow, has kept you stuck at [reference their current revenue] instead of getting to [their target]?"</div>
+              <div class="script-line">"Because looking back over the last [timeframe], what have you lost out on in terms of revenue and growth because this wasn't in place?"</div>
+              <div class="script-line">"How committed are you to becoming the business owner who makes strategic investments to get where they want to go, even if it means an upfront commitment?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)" style="flex-basis: calc(50% - 8px);">
+            <div class="branch-option-header path-c">Spouse / Business Partner</div>
+            <div class="branch-option-body">
+              <div class="note">They already told you in Discovery whether they make the decisions. Now dig deeper:</div>
+              <div class="script-line">"So when it comes to business and financial decisions like this, you mentioned you run this yourself. When you do loop anyone else in, is that more about getting their opinion, or do they actually make the final decision?"</div>
+              <div class="script-line">"The only reason I ask is because in my experience, the most successful business owners are the ones who take full ownership of the research and decision process themselves. They gather all the info, weigh it, then make a decision that's in the best interest of everyone involved."</div>
+              <div class="script-line">"So my goal today is to make sure you have everything you need to make that call confidently, with or without anyone else's input. Sound fair?"</div>
+              <div class="note">If they're dead set on consulting a partner before deciding, ask them to reschedule the call with the other party present. Don't pitch into a guaranteed "I need to talk to my partner" at the end.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">4</div>
+      <div>
+        <div class="phase-title">Pre-Handle Objections</div>
+        <div class="phase-subtitle">Neutralize objections before they come up</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Casual, almost offhand</span>
+        <span class="tag tag-warn">Use what's relevant based on discovery</span>
+      </div>
+
+      <div class="script-line">"Yeah, that makes sense. And honestly, that's pretty common with what I hear from most credit repair owners we talk to. Can I share something with you real quick?"</div>
+      <div class="note">Wait for yes.</div>
+      <div class="script-line">"So most people we work with have tried some version of what you just described, maybe they tried running their own ads, maybe they hired a freelancer or an agency, maybe they bought a course or joined some program that said they'd teach them marketing. And the pattern is almost always the same, either the leads were garbage, the system was too complicated to actually run while managing clients, or nobody was actually building the thing FOR them. They were just given a bunch of stuff to figure out on their own."</div>
+      <div class="note">Pause. Let that land. They should be nodding.</div>
+      <div class="script-line">"And so what ends up happening is they start thinking 'maybe paid ads just don't work for credit repair' or 'maybe I just need more referrals', when really the issue was never the strategy. It was that nobody actually built a system around THEIR business and stuck around to make sure it worked."</div>
+      <div class="script-line">"The other thing I hear a lot, and tell me if this resonates, is that people feel like they need to wait until they're at a certain level before they invest in something like this. Like 'let me get to 10 clients first, then I'll worry about marketing.' But the reality is, that's the exact thinking that keeps most people stuck at the same level for years. The businesses that scale are the ones that build the acquisition system FIRST, not after. Does that make sense?"</div>
+      <div class="script-line">"And look, I wouldn't be telling you this if I hadn't seen it play out hundreds of times. I'm not here to convince you of anything. I just want to make sure you have the full picture so you can make the best decision for yourself. Fair?"</div>
+
+      <div class="sep"></div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">5</div>
+      <div>
+        <div class="phase-title">Hell State</div>
+        <div class="phase-subtitle">Highlight the cost of inaction</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Slower pace, slight concern. Holding up a mirror.</span>
+      </div>
+      <div class="script-line">"So let me ask you this, if nothing changes over the next 6 months, you keep getting the same number of leads, same inconsistent booked calls, same revenue, what does that actually do to the business?"</div>
+      <div class="note">Let them answer. Don't fill the silence.</div>
+      <div class="script-line">"And what does that look like for you personally? Like beyond the business numbers, what does that mean for your day-to-day life?"</div>
+      <div class="note">This is where you get the real answer: stress, can't hire, can't leave their day job, relationship strain, feeling stuck.</div>
+      <div class="script-line">"How long are you willing to keep operating like that?"</div>
+      <div class="note">If they give a vague answer like "not much longer":</div>
+      <div class="script-line">"What does 'not much longer' actually mean though? Like honestly, if you're in this exact same spot 12 months from now, how do you feel about that?"</div>
+      <div class="script-line">"And I know you mentioned you've been dealing with this for [however long they said earlier]. So you've already given it [X months/years] of trying to figure it out on your own. At what point does the cost of NOT fixing this become bigger than the cost of fixing it?"</div>
+      <div class="script-line">"Can I be real with you for a second?"</div>
+      <div class="note">Wait for yes.</div>
+      <div class="script-line">"The credit repair owners I see who stay stuck, it's rarely because they're not good at what they do. Most of you are great at actually fixing people's credit. The problem is they're spending all their time trying to figure out how to GET clients instead of actually SERVING clients. And the longer that goes on, the harder it gets, because you're burning cash, burning energy, and burning time on something that's not even your skill set. And at some point it stops feeling like a business and starts feeling like a job you can't quit."</div>
+      <div class="note">That last line should hit. Pause after it.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">6</div>
+      <div>
+        <div class="phase-title">Dream State</div>
+        <div class="phase-subtitle">Build the vision of where they want to be</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Optimistic, energized. Painting a picture WITH them.</span>
+      </div>
+      <div class="script-line">"Okay so let's flip this. Let's say you had a consistent flow of qualified, booked calls coming in every single week, people who already know what credit repair is, already want help, and they're showing up ready to talk. What changes?"</div>
+      <div class="note">Let them talk. This is their vision, not yours.</div>
+      <div class="script-line">"What does that mean for you personally, beyond just the revenue?"</div>
+      <div class="note">Probe for the deeper stuff: freedom, time with family, quitting their 9-5, hiring people, finally feeling like a real business owner.</div>
+      <div class="script-line">"And what does revenue look like at that point? Like if you're closing [their close rate] of [their target call volume], where does that put you?"</div>
+      <div class="note">Help them do the math if needed. Make the number feel real and achievable.</div>
+      <div class="script-line">"So right now you're at [current revenue] and you want to be at [target revenue]. And the main thing standing between those two numbers is a consistent way to get qualified people on the phone. Is that fair?"</div>
+      <div class="script-line">"What do you think is actually stopping you from getting there on your own?"</div>
+      <div class="note">This surfaces their self-identified limiting belief AND positions your offer as the answer to whatever they say.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 7 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">7</div>
+      <div>
+        <div class="phase-title">Build the Gap</div>
+        <div class="phase-subtitle">Make the distance between current and dream state undeniable</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Grounded, direct. Summarizing what THEY told you.</span>
+      </div>
+      <div class="script-line">"So let me just make sure I'm hearing you right. Right now you're at about [current revenue], you've got [current client count] clients, and most of your leads are coming from [whatever they said]. You've tried [list back their failed attempts] and none of that really got you where you needed to be."</div>
+      <div class="note">Pause. Let them confirm.</div>
+      <div class="script-line">"And where you want to be is [their dream state]. And you said the main thing keeping you from getting there is [their self-identified blocker]."</div>
+      <div class="script-line">"So the way I see it, you know how to fix people's credit. That's not the issue. The issue is you don't have a system that's consistently putting qualified people in front of you so you can actually do what you're good at. And every month that goes by without that system, you're leaving [do rough math] on the table. Does that feel accurate?"</div>
+      <div class="script-line">"And you said you've been dealing with this for [timeframe they gave you]. So that's [X months/years] of operating below where you know you should be. At this point, do you feel like this is something you can figure out on your own, or are you at the point where you need somebody to just build the thing for you?"</div>
+      <div class="note">This is a forced binary. Either answer leads toward your offer.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 8 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">8</div>
+      <div>
+        <div class="phase-title">Commitment Check</div>
+        <div class="phase-subtitle">1-10 temperature check before presenting</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Relaxed, non-pressured. Temperature check, not a trap.</span>
+      </div>
+      <div class="script-line">"Before I walk you through exactly how we'd fix this for you, on a scale of 1 to 10, how committed are you to actually solving this? 1 being 'just kicking tires' and 10 being 'I need this handled now.'"</div>
+      <div class="note">Shut up and let them answer.</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">What do they say?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-b">10 &rarr; Move to Phase 9</div>
+            <div class="branch-option-body">
+              <div class="note">Proceed directly to the Transition to Presentation.</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">Anything Below 10</div>
+            <div class="branch-option-body">
+              <div class="script-line">"I appreciate you being real about that. What's keeping you from being a 10?"</div>
+              <div class="note">Whatever they say is the real objection. Handle it using the pre-handle frameworks, then re-check:</div>
+              <div class="script-line">"So now that we've talked through that, where are you at now?"</div>
+              <div class="note">Loop until they're at a 10 or you've exhausted what you can address, then proceed to Phase 9.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 9 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="toggleCard(this)">
+      <div class="phase-number">9</div>
+      <div>
+        <div class="phase-title">Transition to Presentation</div>
+        <div class="phase-subtitle">Bridge from discovery to pitch with zero resistance</div>
+      </div>
+      <div class="phase-chevron">&#9662;</div>
+    </div>
+    <div class="phase-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Calm, certain. Like a doctor giving a recommendation.</span>
+      </div>
+      <div class="script-line">"Perfect. So look, I don't feel like I have any more questions. Is there anything else you feel like I need to know about your situation that we haven't covered?"</div>
+      <div class="note">Let them respond. Usually it's "no, I think you've got a good picture."</div>
+      <div class="script-line">"Cool. Well [Name], based on everything you've told me, where you're at right now, what you've tried, where you want to go, we can definitely help. And honestly your situation is pretty similar to a lot of the credit repair owners we work with, so this isn't new territory for us."</div>
+      <div class="note">Pause briefly. Then:</div>
+      <div class="script-line">"So where do you want to go from here? I can walk you through exactly how we'd build this out for you, the whole system, A to Z, if you want to see what it looks like."</div>
+      <div class="note">They'll say yes. This is them ASKING you to pitch. You didn't push into it.</div>
+      <div class="script-line">"Alright cool. So what I'm going to do is share my screen and walk you through exactly what we build, how it works, and what it looks like in action. And I'll tie everything back to what you told me, so this isn't some generic presentation. This is what we'd actually do for YOUR business. Sound good?"</div>
+      <div class="note">This is the handoff into Section 2: Presentation.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: PRESENTATION ==================== -->
+<div id="presentation" class="section">
+  <div class="section-title">Section 2: Presentation (Screen Share Walkthrough)</div>
+
+  <div class="tag-row" style="margin-bottom: 20px;">
+    <span class="tag tag-goal">Goal: Show the solution in action. Problem → What we build → Outcome.</span>
+    <span class="tag tag-tone">Tonality: Confident, casual. "Let me show you the thing."</span>
+  </div>
+
+  <div class="script-line" style="margin-bottom: 20px;">"Alright let me share my screen real quick. I'm going to walk you through exactly what we'd be building for you so you can see it, not just hear me talk about it."</div>
+
+  <!-- PART 1 -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon">1</div>
+      <div class="pres-title">The Authority Positioning Funnel</div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="note">Share screen, show the funnel.</div>
+      <div class="script-line">"So the first thing we build is what we call the Authority Positioning Funnel. Here's the problem right now. When prospects land on your page or see your ads, you look like every other credit repair person out there. There's no positioning. No authority. No reason they should choose YOU over the hundred other options saying the same thing. That's why people don't convert."</div>
+      <div class="script-line">"We build you an entire funnel from scratch that positions you as THE expert before they ever talk to you. By the time they book, they already believe you're the solution. They're pre-sold. Pre-qualified. Ready to buy."</div>
+      <div class="script-line">"This is why our clients convert at 2-3x higher rates than industry standard."</div>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon">2</div>
+      <div class="pres-title">The Backend Revenue Recovery System</div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="note">Show the automations and pipeline in GHL.</div>
+      <div class="script-line">"Next is the Backend Revenue Recovery System. Right now, you've got leads coming in from referrals, content, maybe even ads. But here's what's killing you. You have ZERO automation catching those leads when they come in. No follow-up sequences. No nurture campaigns. No system tracking where people are in your pipeline. So deals slip through the cracks. Prospects ghost. Money walks out the door."</div>
+      <div class="script-line">"We build you a complete backend system that automatically captures every lead, nurtures them until they're ready to buy, and alerts you the second they're hot."</div>
+      <div class="script-line">"This alone will turn 30-40% of your dead leads into paying clients without you lifting a finger."</div>
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon">3</div>
+      <div class="pres-title">The Qualified Lead Engine</div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="note">Switch to Facebook Ads Manager, show live results.</div>
+      <div class="script-line">"And the third piece is the Qualified Lead Engine. We use advanced targeting with the Facebook pixel and messaging that filters OUT the tire kickers and brings in ONLY people who have the problem you solve and the money to pay for it."</div>
+      <div class="script-line">"No more wasting time on dead end calls. Every lead that hits your calendar is qualified, educated, and ready to close."</div>
+      <div class="script-line">"This is why our clients can start spending $20-50 a day on ads and still profit massively."</div>
+      <div class="sep"></div>
+      <div class="note">Point to the screen:</div>
+      <div class="script-line">"So right here you can see a live account. These are the leads being generated. This is the cost per result, so every lead coming in is costing about [$ amount]. And this is the daily spend. At $50-$100 a day, you're looking at roughly [X] leads per day flowing into the system. Out of those, a percentage books, a percentage shows, and a percentage becomes a paying client."</div>
+      <div class="script-line">"And you don't touch any of this. We build the ads, write the copy, set the targeting, manage the budget. You just show up to the booked calls."</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="margin-top: 32px;">
+    <div class="section-title">Rep FAQ &mdash; Know This Before You Present</div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What is GHL / Go High Level?"</div>
+      <div class="faq-body">The all-in-one software that runs the client's funnel, automations, calendar booking, and CRM. Think of it as the command center for their entire client acquisition system. You don't need to explain the software in depth. Just show what it does for them.</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What's a funnel?"</div>
+      <div class="faq-body">A single web page designed to get one action. In our case, booking a call. "It's a page that turns strangers into booked appointments" is all you need to say.</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What are automations?"</div>
+      <div class="faq-body">Pre-built text, email, and voicemail sequences that fire automatically when a lead takes an action or doesn't. Think of it like a virtual assistant that never sleeps and never forgets to follow up.</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What does 'cost per result' mean in Ads Manager?"</div>
+      <div class="faq-body">How much we're paying per lead. If cost per result is $10, every person who submits their info costs $10 in ad spend. What matters more is cost per booked call and cost per closed client.</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What's a realistic daily budget?"</div>
+      <div class="faq-body">$50-$100/day is the sweet spot for credit repair. That's $1,500-$3,000/month in ad spend. At an average cost per lead of $5-$10, that's a significant number of leads per month flowing into their system.</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What if the prospect asks about ad spend on top of our fee?"</div>
+      <div class="faq-body">Ad spend is separate from our build fee. Frame it as: "The investment with us is to build the machine. Ad spend is the fuel that runs it. You control the budget. We recommend $50-$100 a day to start, and you can scale up as revenue grows."</div>
+    </div>
+
+    <div class="faq-card" onclick="toggleFaq(this)">
+      <div class="faq-header">&#9654; "What if I don't know the answer to a technical question?"</div>
+      <div class="faq-body">Say: "That's a great question. I want to make sure I give you the right answer on that, so let me get that specific detail for you after the call. But what I can tell you is [redirect to outcome/result]." Never guess. Never bullshit.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: PRICING (PLACEHOLDER) ==================== -->
+<div id="pricing" class="section">
+  <div class="section-title">Section 3: Price Presentation</div>
+
+  <div class="tag-row" style="margin-bottom: 20px;">
+    <span class="tag tag-goal">Goal: Present the investment matter-of-fact. Don't build it up. Don't apologize for it.</span>
+    <span class="tag tag-tone">Tonality: Confident, neutral. Like telling someone the time.</span>
+  </div>
+
+  <div class="note" style="margin-bottom: 20px;">Always lead with the Hero offer. Only downsell if you've exhausted the objection handles and there's a genuine financial constraint. Never lead with the downsell. Never offer multiple options upfront.</div>
+
+  <!-- COMMITMENT CHECK BEFORE PRICING -->
+  <div style="background: var(--yellow-light); border: 2px solid var(--yellow); border-radius: 8px; padding: 20px 24px; margin-bottom: 24px;">
+    <h3 style="font-size: 14px; font-weight: 700; color: var(--yellow-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">&#9888; 1-10 Commitment Check (Run This Before Dropping Price)</h3>
+    <div class="script-line">"So before I go over what it looks like to work together, I just want to make sure we're on the same page. Based on everything we went over, on a scale of 1 to 10, how confident are you that this is the right solution for your business?"</div>
+    <div class="note">Shut up. Let them answer.</div>
+    <div class="sep"></div>
+    <p style="font-size: 14px; line-height: 1.8; margin-top: 8px;"><strong>If 10:</strong> Move straight into pricing below.</p>
+    <p style="font-size: 14px; line-height: 1.8;"><strong>Anything below 10:</strong></p>
+    <div class="script-line">"I appreciate you being real about that. What's keeping you from being a 10?"</div>
+    <div class="note">Handle whatever comes up using the pre-handle frameworks. Re-check until they're at a 10. Do NOT drop price on someone who isn't fully sold on the solution first.</div>
+  </div>
+
+  <!-- HERO OFFER -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon" style="background: var(--yellow); color: var(--text);">&#9733;</div>
+      <div>
+        <div class="pres-title">Hero Offer: $7,000</div>
+        <div class="phase-subtitle">Always present this first</div>
+      </div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="script-line">"So based on everything we talked about, here's what it looks like to work with us."</div>
+
+      <p style="font-weight: 700; margin: 16px 0 8px;">Here's what's included:</p>
+
+      <div style="background: #F7F7F7; border-radius: 6px; padding: 16px; margin: 8px 0;">
+        <p style="font-weight: 700; color: var(--red); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Done For You (We Build It All)</p>
+        <p style="font-size: 14px; line-height: 1.8;">Complete funnel built from scratch, all backend automations, VSL script written for you, 15 static ad creatives, full ad campaign launch and ongoing management</p>
+      </div>
+
+      <div style="background: #F7F7F7; border-radius: 6px; padding: 16px; margin: 8px 0;">
+        <p style="font-weight: 700; color: var(--blue); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Done With You (Ongoing Coaching)</p>
+        <p style="font-size: 14px; line-height: 1.8;">Bi-monthly 1-on-1 performance reviews and consults, weekly group coaching calls with Q&A</p>
+      </div>
+
+      <div style="background: #F7F7F7; border-radius: 6px; padding: 16px; margin: 8px 0;">
+        <p style="font-weight: 700; color: var(--green); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Do It Yourself (Full Training Library)</p>
+        <p style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">Marketing:</p>
+        <p style="font-size: 14px; line-height: 1.8;">Complete AI copywriter setup guide, Media buying 101 (navigating Facebook), how to split test landing pages, how to test new ads and creative strategy, market research and how to test different markets, anatomy of a performing ad, how to record well-performing VSLs and ads</p>
+        <p style="font-weight: 600; font-size: 13px; margin: 8px 0 4px;">Sales:</p>
+        <p style="font-size: 14px; line-height: 1.8;">How to find, train, ramp and manage appointment setters, sales scripts and sales training, sales enablement best practices (speed to lead, DM texts, etc.)</p>
+      </div>
+
+      <div class="sep"></div>
+      <p style="font-weight: 700; margin: 16px 0 8px;">How to frame it for the prospect:</p>
+      <div class="script-line">"So you're getting the entire system built for you, we handle everything. The funnel, the automations, the ads, the creatives, all of it. On top of that you get direct access to me and the team through coaching calls and 1-on-1 reviews, so you're never guessing. And you get the full training library so you understand what's happening in your business and can eventually run it yourself if you want to."</div>
+
+      <div class="sep"></div>
+      <p style="font-weight: 700; margin: 16px 0 8px;">Drop the price:</p>
+      <div class="script-line">"The investment for all of this is $7,000. Let me know what you want to do."</div>
+      <div class="note">State it. Pause. Let them process. Do NOT immediately justify or start selling.</div>
+
+      <div style="background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 20px 24px; margin-top: 16px;">
+        <p style="font-weight: 700; font-size: 15px; color: var(--red); line-height: 1.7;">If the prospect doesn't say yes, go directly to the Universal Opener and objection handles. Work through the handles. If after exhausting the handles it's still not going, route back to Downsell 1. If Downsell 1 doesn't land, route to Downsell 2.</p>
+      </div>
+
+      <div style="background: var(--green-light); border: 1px solid #A5D6A7; border-radius: 6px; padding: 14px 16px; margin-top: 12px;">
+        <p style="font-weight: 700; font-size: 13px; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Payment Plan Option</p>
+        <p style="font-size: 14px;">2 payments of $3,500. First half to get started, second half due in 30 days.</p>
+        <div class="script-line" style="margin-top: 8px;">"We can also split that into two payments of $3,500. First half today to get everything started, second half in 30 days. Would that work better for you?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOWNSELL 1 -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon" style="background: #616161;">&#9661;</div>
+      <div>
+        <div class="pres-title">Downsell 1: $3,500</div>
+        <div class="phase-subtitle">Only if Hero is genuinely out of reach after handling objections</div>
+      </div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="tag-row">
+        <span class="tag tag-warn">Never lead with this. Only present after Hero objection is fully handled.</span>
+      </div>
+
+      <div style="background: #F7F7F7; border-radius: 6px; padding: 16px; margin: 8px 0;">
+        <p style="font-weight: 700; color: var(--red); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Done For You (We Still Build It All)</p>
+        <p style="font-size: 14px; line-height: 1.8;">Complete funnel built from scratch, all backend automations, VSL script written for you, 15 static ad creatives, full ad campaign launch and ongoing management</p>
+      </div>
+
+      <div class="note">This tier still includes the full DFY build. The difference is they don't get the coaching, 1-on-1 reviews, or training library.</div>
+
+      <div class="sep"></div>
+      <div class="script-line">"Look, I hear you on the budget. Here's what I can do. We can get you started at $3,500. You still get the full build, we still handle everything, the funnel, the automations, the ads, all of it. The difference is you wouldn't have the coaching calls, the 1-on-1 reviews, or the training library. But the system itself is the same. It still runs, it still produces. You just won't have the extra support layer. Is that something that works better for where you're at right now?"</div>
+
+      <div class="note" style="margin-top: 16px;">If they still can't do it, move to Downsell 2.</div>
+
+      <div style="background: var(--green-light); border: 1px solid #A5D6A7; border-radius: 6px; padding: 14px 16px; margin-top: 12px;">
+        <p style="font-weight: 700; font-size: 13px; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Payment Plan Option</p>
+        <p style="font-size: 14px;">2 payments of $1,750. First half to get started, second half due in 30 days.</p>
+        <div class="script-line" style="margin-top: 8px;">"We can split that into two payments of $1,750. First half today, second half in 30 days. Does that make it easier?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOWNSELL 2 -->
+  <div class="pres-card">
+    <div class="pres-header" onclick="togglePres(this)">
+      <div class="pres-icon" style="background: #616161;">&#9661;</div>
+      <div>
+        <div class="pres-title">Downsell 2: $997 (One-Time)</div>
+        <div class="phase-subtitle">Last resort. DIY option.</div>
+      </div>
+      <div class="pres-chevron">&#9662;</div>
+    </div>
+    <div class="pres-body">
+      <div class="tag-row">
+        <span class="tag tag-warn">Only if Downsell 1 is also out of reach. This is the floor.</span>
+      </div>
+
+      <div style="background: #F7F7F7; border-radius: 6px; padding: 16px; margin: 8px 0;">
+        <p style="font-weight: 700; color: var(--green); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Do It Yourself (Full Toolkit + Training)</p>
+        <p style="font-size: 14px; line-height: 1.8;">Funnel templates, backend automation templates, VSL script, 15 static ad creatives, ad campaign launch training</p>
+        <p style="font-weight: 600; font-size: 13px; margin: 8px 0 4px;">Marketing Training:</p>
+        <p style="font-size: 14px; line-height: 1.8;">Complete AI copywriter setup guide, Media buying 101, how to test new ads and creative strategy, market research, anatomy of a performing ad, how to record well-performing VSLs and ads, how to build and split test landing pages with AI</p>
+        <p style="font-weight: 600; font-size: 13px; margin: 8px 0 4px;">Sales Training:</p>
+        <p style="font-size: 14px; line-height: 1.8;">How to find, train, ramp and manage appointment setters, sales scripts and sales training, sales enablement best practices</p>
+      </div>
+
+      <div class="sep"></div>
+      <div class="script-line">"Okay here's the last thing I can offer. For $997 one-time, you get the full toolkit and training. You get the funnel templates, the automation templates, the ad creatives, the VSL script, and the entire marketing and sales training library. The difference is you're building it yourself. We give you everything you need, the blueprints, the training, the assets, but you're the one putting it together. For someone who has the time and is willing to put in the work, this can absolutely get you results. It's just going to take more of your time and effort compared to us doing it for you. Is that something you'd want to move forward with?"</div>
+
+      <div class="note" style="margin-top: 16px;">If they say no to this, the deal is dead. Don't chase further. Be respectful, leave the door open, and move on.</div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- ==================== SECTION 4: OBJECTION HANDLING ==================== -->
+<div id="objections" class="section">
+  <div class="section-title">Section 4: End of Call Objection Handling</div>
+
+  <!-- UNIVERSAL OPENER -->
+  <div class="universal-opener">
+    <h3>&#9888; Universal Opener &mdash; Run This First On Every Objection</h3>
+    <div class="script-line">"Got it, totally understand. Just to make sure I understand, do you feel like what I shared with you can solve the problem you have?"</div>
+    <div class="note">Wait for answer.</div>
+    <div class="script-line">"Got it. What makes you feel that way?"</div>
+    <div class="note">Let them explain. Then:</div>
+    <div class="script-line">"Okay got it. So since you're solid on the solution, it sounds like there's maybe something internal or maybe something financial that's coming up for you. If you could maybe be transparent with me and let me know what that is, maybe there's a way I can help."</div>
+    <div class="note">Now they'll give you the REAL objection. Whatever they say determines which branch below.</div>
+  </div>
+
+  <!-- THINK ABOUT IT -->
+  <div class="objection-card">
+    <div class="objection-header" onclick="toggleObjection(this)">
+      <div class="objection-badge">Objection</div>
+      <div class="objection-title">"I Need to Think About It"</div>
+      <div class="objection-chevron">&#9662;</div>
+    </div>
+    <div class="objection-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Calm, not confrontational. Genuinely trying to understand.</span>
+      </div>
+      <div class="script-line">"Totally get it, [name]. And I respect that. Can I ask you something though? When you say you need to think about it, what specifically are you thinking about? Is it more about the process and how it works, whether the outcome is realistic for you, or is it more about the numbers and cost?"</div>
+      <div class="note">This forces them to categorize their hesitation into one of three buckets.</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">Where do they land?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">A) The Process (How It Works)</div>
+            <div class="branch-option-body">
+              <div class="note">Go back to the pitch/presentation. Summarize the key points. Then:</div>
+              <div class="script-line">"Does that cover what you needed to think through?"</div>
+              <div class="note">If yes, re-close. If no, ask what's still unclear.</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-b">B) The Outcome (Will It Work For Me)</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Can I share a perspective? In life, success, business, there's no guarantees. The only guarantee in life besides death and taxes is that nothing changes if nothing changes. The only thing we can do as humans is put ourselves in the best position possible to get the outcomes we want. Right?"</div>
+              <div class="script-line">"There's no guarantee if I go to the gym I'll lose weight. But does it put me in a better position than staying at home? Absolutely."</div>
+              <div class="script-line">"Do we guarantee our system will get you [specific result]? No. But does it put you in a far better position than staying where you are right now with [reference their current pain]? Yes."</div>
+              <div class="script-line">"All it comes down to is what's riskier. Is it riskier for us to build you this system and put you in a position to actually grow? Or is it riskier that you don't do anything, continue sitting in the same spot, and nothing changes? Which one do you feel is riskier?"</div>
+              <div class="note">Wait for answer.</div>
+              <div class="script-line">"Why?"</div>
+              <div class="note">Wait.</div>
+              <div class="script-line">"Because what do you feel happens if you keep making the same decision and things don't change for another 2 weeks, 2 months, 2 years?"</div>
+              <div class="script-line">"So what do we have to do right now to put you in the best position possible to start getting results?"</div>
+            </div>
+          </div>
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-c">C) The Numbers / Cost</div>
+            <div class="branch-option-body">
+              <div class="note">Route to the Money objection handle below.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONEY -->
+  <div class="objection-card">
+    <div class="objection-header" onclick="toggleObjection(this)">
+      <div class="objection-badge">Objection</div>
+      <div class="objection-title">"I Don't Have the Money" / "It's Too Expensive"</div>
+      <div class="objection-chevron">&#9662;</div>
+    </div>
+    <div class="objection-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Calm, zero judgment. Problem-solving with them.</span>
+      </div>
+      <div class="script-line">"Got it. So can I ask, if money weren't in the equation would you move forward with getting this set up?"</div>
+      <div class="note">Wait for answer. If yes, continue. If they hesitate, there's a hidden objection. Go back to universal opener.</div>
+      <div class="script-line">"Why would you do it though?"</div>
+      <div class="note">Let them re-sell themselves on why they need this. Then:</div>
+      <div class="script-line">"Okay so with the money being the thing, what's the reason we're on this call right here? It's cause you want to get more clients, grow your revenue, and stop leaving money on the table, right? So is the problem that you don't have money, or that you don't have the leverage or the structure to GET money?"</div>
+      <div class="note">Let them answer.</div>
+      <div class="script-line">"Exactly. Because what happens if you allow the lack of money to stop you from getting the leverage and structure you need so that you're never in this position again? What happens then?"</div>
+      <div class="note">Let them sit with that.</div>
+      <div class="script-line">"Now I can help you with the investment. I can't help you with the commitment to want to get better. Now is that something you are committed to?"</div>
+      <div class="note">Wait for yes.</div>
+      <div class="script-line">"But why now? Why not just push this off another few months?"</div>
+      <div class="note">Let them tell you why now matters. They're closing themselves.</div>
+      <div class="script-line">"So just be real with me. Is it that we have to figure out the logistics of making this work financially, or is it that it's just scary and you're looking for a reason to stay comfortable?"</div>
+      <div class="note">This separates true financial constraint from fear disguised as a money problem.</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">True Financial Constraint?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">Yes, Genuine Financial Constraint</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Let me ask you something, [name]. Earlier you mentioned you have some savings or reserves in the business, right?"</div>
+              <div class="script-line">"Can I ask, what are those reserves actually for? Is it to keep money safe, or to keep the business growing? Because the truth is, money sitting still isn't safety. It's just lost opportunity."</div>
+              <div class="script-line">"You told me the goal was to get more clients and finally create more leverage, not more limits. So if that money isn't working to move you closer to that, isn't it really just costing you to hold onto it?"</div>
+              <div class="script-line">"Smart business owners don't cling to cash. They circulate it. They move it into systems that produce more cash and opportunity. So the real question is, do you want to protect your money, or multiply it?"</div>
+              <div class="script-line">"Because the only way to create more freedom is to make your money start working harder than you do."</div>
+              <div class="note">Then move to presenting payment options/structure.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPOUSE -->
+  <div class="objection-card">
+    <div class="objection-header" onclick="toggleObjection(this)">
+      <div class="objection-badge">Objection</div>
+      <div class="objection-title">"I Need to Talk to My Spouse / Partner"</div>
+      <div class="objection-chevron">&#9662;</div>
+    </div>
+    <div class="objection-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Confused, not confrontational. Genuinely puzzled.</span>
+      </div>
+      <div class="script-line">"Oh you have to... ask your... [partner]?"</div>
+      <div class="note">Slight pause, slightly confused tone.</div>
+      <div class="script-line">"Ok no problem. I'm just a bit confused because earlier you told me that you're the one who makes the decisions. Did I hear you wrong or did something come up since you told me that that's making you hesitate?"</div>
+      <div class="note">Let them answer.</div>
+      <div class="script-line">"Earlier you told me you're the one who usually gathers all the info, makes sure it makes sense, and then brings it to your partner from a place of clarity, right?"</div>
+      <div class="note">Wait for yes.</div>
+      <div class="script-line">"So before we even think about looping them in, let me just ask you straight. Do you personally feel like what we went over today can get you where you want to go?"</div>
+      <div class="note">Wait for answer. If yes, continue:</div>
+      <div class="script-line">"Okay so here's what I've seen with the business owners who actually move the needle. They don't go to their partner asking for permission. They go to their partner with a decision they've already made and bring certainty to the table, not hesitation."</div>
+      <div class="script-line">"You're not asking for permission. You're giving them confidence. You've done the research, you've seen the solution, and it makes sense. You're already handling it. Right?"</div>
+      <div class="script-line">"So what do we have to do right now to put you in the best position possible to move forward?"</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">Dead set on consulting partner?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">Yes, Won't Budge</div>
+            <div class="branch-option-body">
+              <div class="script-line">"I totally respect that. Here's what I'd suggest though. Rather than you trying to relay everything we talked about today, which never translates the same way secondhand, why don't we just get them on a quick call? That way they can hear it directly, ask whatever questions they have, and you two can make the decision together with the full picture. When would be a good time to get all three of us on?"</div>
+              <div class="note">Book the three-way call. Do NOT let them go relay the info alone. It will die every time.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER OPTIONS -->
+  <div class="objection-card">
+    <div class="objection-header" onclick="toggleObjection(this)">
+      <div class="objection-badge">Objection</div>
+      <div class="objection-title">"I Want to Look at Other Options"</div>
+      <div class="objection-chevron">&#9662;</div>
+    </div>
+    <div class="objection-body">
+      <div class="tag-row">
+        <span class="tag tag-tone">Tonality: Unbothered, genuinely curious. Not threatened.</span>
+      </div>
+      <div class="script-line">"Got it. Earlier you said you've seen how most marketing companies or agencies end up wasting time or money because they don't actually understand credit repair. They either run generic ads, hand you garbage leads, or just collect a retainer and disappear, right?"</div>
+      <div class="note">Wait for confirmation.</div>
+      <div class="script-line">"So if you already know those routes don't fix the root issue, what exactly are you hoping to hear from another company that you didn't already get clarity on today?"</div>
+      <div class="note">Let them answer.</div>
+      <div class="script-line">"Because remember what we agreed on earlier. You don't just want marketing. You want a system that actually produces qualified clients consistently. And if you want that, it's not about who sounds the best. It's about who actually has the infrastructure to make it happen."</div>
+      <div class="script-line">"So if we've already established that we're the only ones bridging that gap between just running ads and actually delivering results, what's really left to compare? What would a 'better option' even look like?"</div>
+      <div class="note">Let them answer. Usually they can't articulate one.</div>
+      <div class="script-line">"If it's results, we both know no one's going to provide the same level of done-for-you system building that we walked through today."</div>
+      <div class="script-line">"So let me ask you directly. Is this about needing more proof, or just giving yourself permission to act on what already makes sense?"</div>
+      <div class="note">Wait for answer.</div>
+      <div class="sep"></div>
+      <div class="branch-container">
+        <div class="branch-question">Still want to shop?</div>
+        <div class="branch-line"></div>
+        <div class="branch-options">
+          <div class="branch-option" onclick="toggleBranch(this)">
+            <div class="branch-option-header path-a">Yes, Still Shopping</div>
+            <div class="branch-option-body">
+              <div class="script-line">"Exactly, and that's why this conversation matters, [name]. You've already done the research. You've already seen what's out there. And none of those routes are actually designed to build you a full client acquisition system."</div>
+              <div class="script-line">"At some point, it stops being about options and starts being about outcomes. You said earlier you're ready to stop guessing, stop wasting time, and start actually growing."</div>
+              <div class="script-line">"So the only question left isn't 'who else can I talk to.' It's 'how fast do I want to start seeing results.'"</div>
+              <div class="script-line">"Because the difference between where you are now and where you want to be isn't another phone call. It's the decision that's made right here."</div>
+              <div class="script-line">"Right?"</div>
+              <div class="script-line">"So what do we have to do right now to put you in the best position possible to get started?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> <!-- end main -->
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleCard(header) {
+  const card = header.closest('.phase-card');
+  card.classList.toggle('open');
+}
+
+function togglePres(header) {
+  const card = header.closest('.pres-card');
+  card.classList.toggle('open');
+}
+
+function toggleObjection(header) {
+  const card = header.closest('.objection-card');
+  card.classList.toggle('open');
+}
+
+function toggleBranch(option) {
+  option.classList.toggle('active');
+}
+
+function toggleFaq(card) {
+  card.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
